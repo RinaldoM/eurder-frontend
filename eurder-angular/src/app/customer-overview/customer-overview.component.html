@@ -1,0 +1,18 @@
+<input type="text" id="searchTextId" [(ngModel)]="searchText" name="searchText" placeholder="Search By Name">
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th scope="col">ID</th>
+    <th scope="col">FIRSTNAME</th>
+    <th scope="col">LASTNAME</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let customer of customerList | customerFilter: searchText">
+    <td>{{customer.id}}</td>
+    <td>{{customer.firstname}}</td>
+    <td>{{customer.lastname}}</td>
+  </tr>
+  </tbody>
+</table>
+

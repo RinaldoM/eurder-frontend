@@ -1,0 +1,86 @@
+<div class="mains">
+  <main>
+    <section>
+      <h3 class="section-title">Items
+        <section class="searchBox">
+          <div class="form-group">
+            <input id="search"
+                   name="item"
+                   class="form-control"
+                   placeholder="Filter by name ..."
+                   [(ngModel)]="searchText">
+          </div>
+        </section>
+      </h3>
+      <div class="card-list" style="justify-content: right ">
+
+        <button class="btn btn-md btn-success" (click)="open(content)">Create New Item +</button>
+
+      </div>
+
+
+      <ul class="card-list">
+        <li *ngFor="let item of itemList | nameFilter: searchText" class="card">
+          <div class="card-title">{{item.name}}</div>
+          <img class="card-image" src="https://loremflickr.com/320/240/kitten" alt="item image">
+          <div class="card-footer">
+            <div>Price: &euro; {{item.price}}</div>
+            <div class="stock">
+
+
+              <span>{{StockUrgency[item.stockUrgency]}}</span>
+
+
+              <div *ngIf="item.stockUrgency === STOCK_LOW">
+                <img class="icon" src="assets/images/red.png" alt="stock-icon">
+              </div>
+              <div *ngIf="item.stockUrgency === STOCK_MEDIUM">
+                <img class="icon" src="assets/images/orange.png" alt="stock-icon">
+              </div>
+              <div *ngIf="item.stockUrgency === STOCK_HIGH">
+                <img class="icon" src="assets/images/green.png" alt="stock-icon">
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </section>
+  </main>
+
+
+  <ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Create New Item</h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="itemForm" (ngSubmit)="onSubmit()">
+
+        <!--      <label>Name</label>-->
+        <!--      <input class="form-control" formControlName="name" type="text" name="name"><br>-->
+
+        <label>Name:</label>
+        <input class="form-control" type="text" formControlName="name">
+        <div *ngIf="itemForm.controls['name'].invalid && itemForm.controls['name'].touched" class="alert alert-danger">
+          Name is required.
+        </div>
+
+        <label>Description:</label>
+        <textarea class="form-control" formControlName="description" type="text" name="description"></textarea>
+        <div *ngIf="itemForm.controls['description'].invalid && itemForm.controls['description'].touched" class="alert alert-danger">
+          Description is required.
+        </div>
+
+        <label>Price</label>
+        <input class="form-control" formControlName="price" type="number" min="0" oninput="validity.valid||(value='');" name="price"><br>
+
+        <label>Amount of Stock</label>
+        <input class="form-control" formControlName="amountOfStock" type="number" min="0" oninput="validity.valid||(value='');" name="amountOfStock"><br>
+        <label *ngIf="hasError" class="text-warning">Fill in all the fields</label>
+        <div class="modal-footer">
+          <a class="btn btn-primary pull-right" type="submit" routerLink="/items/{{itemForm.value.name}}" (click)="modal.close()">Add item</a>
+        </div>
+      </form>
+    </div>
+  </ng-template>
+</div>
