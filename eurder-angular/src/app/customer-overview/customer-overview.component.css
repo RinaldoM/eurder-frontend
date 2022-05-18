@@ -1,0 +1,6 @@
+.wrapper {
+  overflow: hidden; /* will contain if #first is longer than #second */
+}
+.element {
+  display: inline-block;
+}

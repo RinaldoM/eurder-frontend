@@ -1,0 +1,88 @@
+<main class="container">
+  <h3 class="section-title">Customer: {{customer.id}}</h3>
+  <div class="col-5 offset-4" >
+    <form>
+
+      <label>Firstname:</label>
+      <input class="form-control" type="text" placeholder="{{customer.firstname}}">
+
+      <label>Lastname:</label>
+      <input class="form-control" placeholder="{{customer.lastname}}" type="text" name="description">
+      <div>
+
+        <div class="col-6 element">
+          <label>Email:</label>
+          <input class="form-control" placeholder="{{customer.email.localPart}}" type="text" name="localPart">
+        </div>
+        <div class="col-1 element ">
+          <input class="form-control" placeholder="@" disabled>
+        </div>
+        <div class="col-5 element ">
+          <input class="form-control" placeholder="{{customer.email.domain}}" type="text" name="domain">
+        </div>
+
+      </div>
+
+
+      <label>Phone number (mobile):</label>
+
+      <div class="wrapper" >
+        <div class="col-1 element ">
+          <input class="form-control" placeholder="+" disabled>
+        </div>
+        <div class="col-2 element">
+          <input class="form-control" placeholder="{{customer.phoneNumber.countryCallingCode}}" type="text" name="countryCallingCode">
+
+        </div>
+
+        <div class="col-9 element">
+          <input class="form-control" placeholder="{{customer.phoneNumber.number}}" type="text" name="number">
+
+        </div>
+
+
+      </div>
+
+      <div formGroupName="address">
+        <div class="wrapper">
+
+          <div class="col-9 element">
+            <label>Street:</label>
+            <input class="form-control" placeholder="{{customer.address.streetName}}" type="text" name="streetName">
+
+          </div>
+
+          <div class="col-3 element">
+            <label>Number:</label>
+            <input class="form-control" placeholder="{{customer.address.houseNumber}}" type="text" name="houseNumber">
+
+          </div>
+
+        </div>
+
+        <div class="wrapper"></div>
+
+
+
+
+
+
+        <div class="col-4 element">
+          <label>Postalcode:</label>
+          <input class="form-control" placeholder="{{customer.address.postalCode}}" type="text" name="postalCode">
+        </div>
+        <div class="col-8 element">
+          <label>Country:</label>
+          <input class="form-control" placeholder="{{customer.address.country}}" type="text" name="postalCode">
+        </div>
+
+
+      </div>
+
+
+      <a routerLink="/customers/" type="button" class="btn btn-light">BACK</a>
+      <button class="btn-info btn">EDIT</button>
+
+    </form>
+  </div>
+</main>

@@ -1,0 +1,15 @@
+footer {
+  display: flex;
+  justify-content: center;
+  margin: .5rem;
+  border-style: solid;
+  border-width: 1px;
+  bottom: 0;
+}
+
+.logo-group {
+  display: inline-flex;
+  justify-content: initial;
+  align-items: center;
+}
+

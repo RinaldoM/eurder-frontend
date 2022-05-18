@@ -1,0 +1,50 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  padding: 50px;
+  margin: .5rem;
+  border-bottom-color: black;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+}
+.logo-group {
+  display: inline-flex;
+  justify-content: initial;
+  align-items: center;
+}
+
+nav {
+  display: flex;
+  justify-content: end;
+}
+
+nav > a {
+  margin: auto;
+  border-width: 1px;
+  border-style: solid;
+  border-color: blue;
+
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+nav > a:hover {
+  background-color: blue;
+  color: white;
+}
+
+.logo-title {
+  font-size: 35px;
+}
+
+.section-title {
+  font-size: 25px;
+  font-weight: 500;
+
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+
+  border-bottom-color: black;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+}
