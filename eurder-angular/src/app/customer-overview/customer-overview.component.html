@@ -1,18 +1,180 @@
-<input type="text" id="searchTextId" [(ngModel)]="searchText" name="searchText" placeholder="Search By Name">
-<table class="table table-striped">
-  <thead>
-  <tr>
-    <th scope="col">ID</th>
-    <th scope="col">FIRSTNAME</th>
-    <th scope="col">LASTNAME</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr *ngFor="let customer of customerList | customerFilter: searchText">
-    <td>{{customer.id}}</td>
-    <td>{{customer.firstname}}</td>
-    <td>{{customer.lastname}}</td>
-  </tr>
-  </tbody>
-</table>
+<div class="mains">
+  <main class="col-10 offset-1">
+    <section>
+      <div class="wrapper row"   >
+        <h3 class="section-title col element">Customers</h3>
+        <section class="searchBox col-2 col element" >
+          <div class="form-group">
+            <input id="search"
+                   name="item"
+                   class="form-control"
+                   placeholder="Filter by name ..."
+                   [(ngModel)]="searchText">
+          </div>
+        </section>
+      </div>
+
+
+
+      <table class="table table-striped">
+
+        <thead>
+        <tr>
+          <th scope="col" class="col-4">ID</th>
+          <th scope="col" class="col-2">FIRSTNAME</th>
+          <th scope="col" class="col-2">LASTNAME</th>
+
+          <th class="col-2">
+            <button class="btn btn-md btn-success" (click)="open(content)">Create New Customer +</button>
+          </th>
+
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let customer of customerList | customerFilter: searchText">
+
+          <td class="col-4">{{customer.id}}</td>
+          <td class="col-2">{{customer.firstname}}</td>
+          <td class="col-2">{{customer.lastname}}</td>
+          <td class="col-1">
+            <a type="button" class="btn-light" routerLink="/customers/{{customer.id}}">VIEW</a>
+          </td>
+          <td class="col-1">
+            <button class="btn btn-info">EDIT</button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+  <ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Create New Customer</h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="customerForm" (ngSubmit)="onSubmit()">
+
+        <label>Firstname:</label>
+        <input class="form-control" type="text" formControlName="firstname">
+        <div *ngIf="customerForm.controls['firstname'].invalid && customerForm.controls['firstname'].touched"
+             class="alert alert-danger">
+          Firstname is required.
+        </div>
+
+        <label>Lastname:</label>
+        <input class="form-control" formControlName="lastname" type="text" name="description">
+        <div *ngIf="customerForm.controls['lastname'].invalid && customerForm.controls['lastname'].touched"
+             class="alert alert-danger">
+          Lastname is required.
+        </div>
+
+        <div  formGroupName="email">
+
+          <div class="col-4 element">
+            <label>Email:</label>
+
+            <input class="form-control" #local formControlName="localPart" type="text" name="localPart">
+            <!--          <div *ngIf="customerForm.controls['email'].invalid && customerForm.controls['email'].touched"-->
+            <!--               class="alert alert-danger">-->
+            <!--            Email is required.-->
+          </div>
+          <div class="col-1 element ">
+            <input class="form-control" placeholder="@" disabled>
+          </div>
+          <div class="col-4 element ">
+            <input class="form-control" #domain formControlName="domain" type="text" name="domain">
+            <!--          <div *ngIf="customerForm.controls['email'].invalid && customerForm.controls['email'].touched"-->
+            <!--               class="alert alert-danger">-->
+            <!--            Email is required.-->
+
+
+
+          </div>
+        </div>
+
+
+        <label>Phone number (mobile):</label>
+
+        <div class="wrapper" formGroupName="phoneNumber">
+          <div class="col-1 element ">
+            <input class="form-control" placeholder="+" disabled>
+          </div>
+          <div class="col-2 element">
+            <input class="form-control" formControlName="countryCallingCode" type="text" name="countryCallingCode">
+            <!--            <div-->
+            <!--              *ngIf="customerForm.controls['countryCallingCode'].invalid && customerForm.controls['countryCallingCode'].touched"-->
+            <!--              class="alert alert-danger">-->
+            <!--              Country code is required.-->
+            <!--            </div>-->
+          </div>
+
+          <div class="col-9 element">
+            <input class="form-control" formControlName="number" type="text" name="number">
+            <!--            <div *ngIf="customerForm.controls['number'].invalid && customerForm.controls['number'].touched"-->
+            <!--                 class="alert alert-danger">-->
+            <!--              Phonenumber is required.-->
+            <!--            </div>-->
+          </div>
+
+
+        </div>
+        <div formGroupName="address">
+          <div class="wrapper">
+
+            <div class="col-9 element">
+              <label>Street:</label>
+              <input class="form-control" formControlName="streetName" type="text" name="streetName">
+              <!--            <div *ngIf="customerForm.controls['street'].invalid && customerForm.controls['street'].touched"-->
+              <!--                 class="alert alert-danger">-->
+              <!--              Street is required.-->
+              <!--            </div>-->
+            </div>
+
+            <div class="col-3 element">
+              <label>Number:</label>
+              <input class="form-control" formControlName="houseNumber" type="text" name="houseNumber">
+              <!--            <div *ngIf="customerForm.controls['houseNumber'].invalid && customerForm.controls['houseNumber'].touched"-->
+              <!--                 class="alert alert-danger">-->
+              <!--              Number is required.-->
+              <!--            </div>-->
+            </div>
+
+          </div>
+
+          <div class="wrapper"></div>
+
+
+
+
+          <div class="col-8 element">
+            <label>Country:</label>
+            <select class="form-control" formControlName="country">
+
+              <option  *ngFor="let country of countries"  [value]="country"> {{country}} </option>
+            </select>
+          </div>
+          <div class="col-4 element">
+          <label>Postalcode:</label>
+            <input class="form-control" formControlName="postalCode" type="text" name="postalCode">
+            <!--        <div *ngIf="customerForm.controls['postalCode'].invalid && customerForm.controls['postalCode'].touched"-->
+            <!--             class="alert alert-danger">-->
+            <!--          Postalcode is required.-->
+            <!--        </div>-->
+          </div>
+          <label *ngIf="hasError" class="text-warning">Fill in all the fields</label>
+
+        </div>
+
+        <div class="modal-footer">
+          <button class="btn btn-primary pull-right" type="submit" routerLink="/customers/">Add Customer</button>
+        </div>
+      </form>
+    </div>
+  </ng-template>
+
+
+</div>
 

@@ -21,4 +21,15 @@ export class CustomerService {
   getCustomers(): Observable<Customer[]>{
     return this.http.get<Customer[]>(this.backendUrl);
   }
+
+  addCustomer(customer: Customer): Observable<Customer>{
+    return this.http.post<Customer>(this.backendUrl, customer);
+  }
+
+  getCustomer(id : string): Observable<Customer>{
+    const url = `${this.backendUrl}/${id}`;
+    return this.http.get<Customer>(url);
+  }
+
+
 }

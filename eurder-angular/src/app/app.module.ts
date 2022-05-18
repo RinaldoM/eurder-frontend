@@ -9,14 +9,14 @@ import {HttpClientModule} from "@angular/common/http";
 import { NameFilterPipe } from './name-filter.pipe';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { CustomerFilterPipe } from './customer-filter.pipe';
+import { CustomerDetailComponent } from './customer-detail/customer-detail.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ItemOverviewComponent,
     NameFilterPipe,
-    CustomerFilterPipe
+    CustomerDetailComponent,
 
   ],
   imports: [
@@ -30,7 +30,6 @@ import { CustomerFilterPipe } from './customer-filter.pipe';
   ],
   providers: [],
   exports: [
-    CustomerFilterPipe
 
   ],
   bootstrap: [AppComponent]

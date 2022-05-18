@@ -1,1 +1,19 @@
-<p>item-detail works!</p>
+<main class="container">
+
+
+<h3 class="section-title">Item: {{item.id}}</h3>
+<div class="col-5 offset-4" >
+<form>
+  <label >Name</label>
+  <input class="form-control" type="text" placeholder="{{item.name}}" disabled>
+  <label >Description</label>
+  <textarea contenteditable class="form-control" placeholder="{{item.description}}"></textarea>
+  <label >Price</label>
+  <input class="form-control" type="text" placeholder="{{item.price}}" disabled>
+  <label >Amount of Stock</label>
+  <input class="form-control" type="text" placeholder="{{item.amountOfStock}}" disabled>
+  <button class="btn btn-info">EDIT</button>
+  <a routerLink="/items/" type="button" class="btn btn-light">BACK</a>
+</form>
+</div>
+</main>

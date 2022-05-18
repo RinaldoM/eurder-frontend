@@ -71,6 +71,7 @@ export class ItemOverviewComponent implements OnInit {
       .subscribe({
         next:() =>{
           this.itemForm.reset();
+          window.location.reload();
         },
         error: (error) =>{
           this.hasError = true;

@@ -10,6 +10,7 @@ import { CustomerOverviewComponent } from '../customer-overview/customer-overvie
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {AppModule} from "../app.module";
 import {NgbTypeaheadModule} from "@ng-bootstrap/ng-bootstrap";
+import {CustomerFilterPipe} from "../customer-filter.pipe";
 
 
 
@@ -20,7 +21,8 @@ import {NgbTypeaheadModule} from "@ng-bootstrap/ng-bootstrap";
         FooterComponent,
         HomepageComponent,
         ItemDetailComponent,
-        CustomerOverviewComponent
+        CustomerOverviewComponent,
+      CustomerFilterPipe
     ],
     exports: [
         LayoutComponent
@@ -31,7 +33,6 @@ import {NgbTypeaheadModule} from "@ng-bootstrap/ng-bootstrap";
     FormsModule,
     ReactiveFormsModule,
     NgbTypeaheadModule,
-    AppModule,
 
   ]
 })

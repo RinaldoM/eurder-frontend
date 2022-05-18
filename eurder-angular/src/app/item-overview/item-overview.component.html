@@ -20,7 +20,9 @@
 
 
       <ul class="card-list">
+
         <li *ngFor="let item of itemList | nameFilter: searchText" class="card">
+          <a routerLink="/items/{{item.id}}">
           <div class="card-title">{{item.name}}</div>
           <img class="card-image" src="https://loremflickr.com/320/240/kitten" alt="item image">
           <div class="card-footer">
@@ -42,7 +44,9 @@
               </div>
             </div>
           </div>
+          </a>
         </li>
+
       </ul>
     </section>
   </main>
@@ -78,7 +82,7 @@
         <input class="form-control" formControlName="amountOfStock" type="number" min="0" oninput="validity.valid||(value='');" name="amountOfStock"><br>
         <label *ngIf="hasError" class="text-warning">Fill in all the fields</label>
         <div class="modal-footer">
-          <a class="btn btn-primary pull-right" type="submit" routerLink="/items/{{itemForm.value.name}}" (click)="modal.close()">Add item</a>
+          <button class="btn btn-primary pull-right" type="submit" routerLink="/items/">Add item</button>
         </div>
       </form>
     </div>

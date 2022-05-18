@@ -22,6 +22,11 @@ export class ItemService {
     return this.http.get<Item[]>(this.backendUrl);
   }
 
+  getItem(id : string): Observable<Item>{
+    const url = `${this.backendUrl}/${id}`;
+    return this.http.get<Item>(url);
+  }
+
 
   addItem(item: Item): Observable<void>{
     return this.http.post<void>(this.backendUrl, item);
